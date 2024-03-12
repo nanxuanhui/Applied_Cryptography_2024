@@ -4,8 +4,8 @@ run the code below:<br/>
 npm install<br/>
 npm run server<br/>
 
-You can see very page by using the URL below:
-http://localhost:8080/encrypt
-http://localhost:8080/fileDownload
-http://localhost:8080/user
-http://localhost:8080
+You can see very page by using the URL below:<br/>
+http://localhost:8080/encrypt<br/>
+http://localhost:8080/fileDownload<br/>
+http://localhost:8080/user<br/>
+http://localhost:8080<br/>
