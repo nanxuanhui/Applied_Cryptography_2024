@@ -1,6 +1,7 @@
 package com.rsa.project.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.rsa.project.model.request.UserStatusRequest;
 import com.rsa.project.service.UserService;
 import com.rsa.project.common.BaseResponse;
 import com.rsa.project.common.ErrorCode;
@@ -15,17 +16,15 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户接口
  *
+ *
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RequestMapping("/user")
 public class UserController {
 
@@ -81,7 +80,7 @@ public class UserController {
 
     @GetMapping("/search")
     public BaseResponse<List<User>> searchUser(String username, HttpServletRequest request) {
-        userService.assertAdmin(request);
+//        userService.assertAdmin(request);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (StringUtils.isNotBlank(username)) {
             queryWrapper.like("username", username);
@@ -93,7 +92,7 @@ public class UserController {
 
     @PostMapping("/delete")
     public BaseResponse<Boolean> deleteUser(@RequestBody long id, HttpServletRequest request) {
-        userService.assertAdmin(request);
+//        userService.assertAdmin(request);
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -101,4 +100,28 @@ public class UserController {
         return ResultUtils.success(b);
     }
 
+
+    @PostMapping("/status1")
+    public BaseResponse<Boolean>  changeStatus1(@RequestBody UserStatusRequest  status) {
+         userService.findUser(status.getId());
+
+
+        return ResultUtils.success(true);
+    }
+    @PostMapping("/status0")
+    public BaseResponse<Boolean>  changeStatus0(@RequestBody UserStatusRequest  status) {
+        userService.findUser0(status.getId());
+
+
+        return ResultUtils.success(true);
+    }
+
+
+    @PostMapping("/member")
+    public BaseResponse<User> getMember(@RequestBody UserStatusRequest  status) {
+        User member = userService.getMember(status.getId());
+
+
+        return ResultUtils.success(member);
+    }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 /**
  * 请求 AOP
  *
+
  **/
 @Aspect
 @Component
@@ -26,7 +27,7 @@ public class RequestInterceptor {
     /**
      * 请求响应日志
      */
-    @Around("execution(* com.hujian.project.controller.*.*(..))")
+    @Around("execution(* com.rsa.project.controller.*.*(..))")
     public Object logInterceptor(ProceedingJoinPoint point) throws Throwable {
         // count time
         StopWatch stopWatch = new StopWatch();

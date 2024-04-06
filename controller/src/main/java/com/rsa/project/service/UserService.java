@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 用户服务
  *
- * @author yupi
+
  */
 public interface UserService extends IService<User> {
 
@@ -80,4 +80,9 @@ public interface UserService extends IService<User> {
      * @throws BusinessException 未登录则抛异常
      */
     User getLoginUser(HttpServletRequest request);
+
+    void findUser(long id);
+    void findUser0(long id);
+
+    User getMember(long id);
 }

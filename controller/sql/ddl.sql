@@ -1,6 +1,8 @@
-create database user_db;
 
-use user_db;
+create database ras_db;
+
+use ras_db;
+
 
 create table user
 (

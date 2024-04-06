@@ -3,6 +3,7 @@ package com.rsa.project.service.impl;
 import static com.rsa.project.constant.UserConstant.USER_LOGIN_STATE;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.rsa.project.common.ErrorCode;
 import com.rsa.project.constant.UserConstant;
@@ -22,7 +23,7 @@ import org.springframework.util.DigestUtils;
 /**
  * 用户服务实现类
  *
- * @author yupi
+
  */
 @Service
 @Slf4j
@@ -180,6 +181,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             throw new BusinessException(ErrorCode.NOT_LOGIN);
         }
         return loginUser;
+    }
+
+    @Override
+    public void findUser(long id) {
+        User user = userMapper.selectById(id);
+        UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
+        userUpdateWrapper.eq("id",id);
+        userUpdateWrapper.set("userStatus",1);
+        baseMapper.update(user,userUpdateWrapper);
+    }
+
+    @Override
+    public void findUser0(long id) {
+        User user = userMapper.selectById(id);
+        UpdateWrapper<User> userUpdateWrapper = new UpdateWrapper<>();
+        userUpdateWrapper.eq("id",id);
+        userUpdateWrapper.set("userStatus",0);
+        baseMapper.update(user,userUpdateWrapper);
+    }
+
+    @Override
+    public User getMember(long id) {
+        User user = userMapper.selectById(id);
+        return user;
     }
 
 }

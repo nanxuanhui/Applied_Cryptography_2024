@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Encrypt from '../components/Encrypt.vue'
 import UserMember from '../views/UserMember.vue'
 import FileDownload from '../views/FileDownload.vue'
+import Menu from '../components/Menu.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     path: '/user',
     name: 'UserMember',
     component: UserMember
+  },
+  {
+    path: '/menu',
+    name: 'Menu',
+    component: Menu
   },
   {
     path: '/about',
