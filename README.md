@@ -19,9 +19,9 @@ Vamsi Krishna Meka</br>
 Hrushika Papani</br>
 
 ##Project setup<br/>
+npm install<br/>
 run the controller/src/main/java/com/rsa/project/MyApplication.java file first<br/>
 run the code below:<br/>
-npm install<br/>
 npm run server<br/>
 
 ##admin account<br/>
